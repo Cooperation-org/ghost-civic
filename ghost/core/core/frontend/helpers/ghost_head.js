@@ -334,6 +334,17 @@ module.exports = async function ghost_head(options) { // eslint-disable-line cam
             head.push(`<script defer src="${getAssetUrl('public/member-attribution.min.js')}"></script>`);
         }
 
+        // Civic Action cards
+        if (!excludeList.has('civic_action')) {
+            // Bridge URL should be set via environment variable civic__bridgeUrl or in config.json
+            const civicBridgeUrl = config.get('civic:bridgeUrl') || config.get('civic')?.bridgeUrl;
+            if (civicBridgeUrl) {
+                head.push(`<script>window.ghostCivicBridgeUrl = ${JSON.stringify(civicBridgeUrl)};</script>`);
+                head.push(`<script defer src="${getAssetUrl('public/civic-action.js')}"></script>`);
+                head.push(`<link rel="stylesheet" type="text/css" href="${getAssetUrl('public/civic-action.css')}">`);
+            }
+        }
+
         // Use settingsHelpers to check if web analytics is enabled (includes all necessary checks)
         if (settingsHelpers.isWebAnalyticsEnabled()) {
             head.push(getTinybirdTrackerScript(dataRoot));

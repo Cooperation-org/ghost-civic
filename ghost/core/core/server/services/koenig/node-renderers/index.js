@@ -13,6 +13,7 @@ module.exports = {
     button: require('./button-renderer'),
     callout: require('./callout-renderer'),
     'call-to-action': require('./call-to-action-renderer'),
+    'civic-action': require('./civic-action-renderer'),
     codeblock: require('./codeblock-renderer'),
     'email-cta': require('./email-cta-renderer'),
     email: require('./email-renderer'),
