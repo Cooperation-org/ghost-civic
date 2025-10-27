@@ -1,0 +1,274 @@
+{{!< default}}
+
+{{!-- OAuth Welcome Page for email collection --}}
+{{!-- Save this as oauth-welcome.hbs in your Ghost theme --}}
+
+<main class="oauth-welcome-page">
+    <div class="welcome-container">
+        <div class="welcome-card">
+            <div class="welcome-header">
+                <h1 class="welcome-title">Welcome to {{@site.title}}! 👋</h1>
+                <p class="welcome-subtitle">You're successfully logged in with Bluesky</p>
+            </div>
+
+            <div class="welcome-content">
+                <p class="welcome-message">
+                    Want to stay updated with our latest posts and announcements? 
+                    Provide your email to subscribe to our newsletter.
+                </p>
+
+                <form method="POST" action="/members/api/oauth/complete-profile" class="email-form">
+                    <input type="hidden" name="token" value="{{token}}">
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email address (optional)</label>
+                        <input 
+                            type="email" 
+                            name="email" 
+                            id="email" 
+                            class="form-input"
+                            placeholder="you@example.com"
+                        >
+                        <p class="form-help">We'll only use this for newsletter updates, never spam</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input 
+                                type="checkbox" 
+                                name="subscribe" 
+                                checked
+                                class="form-checkbox"
+                            >
+                            <span>Yes, I want to receive newsletter updates</span>
+                        </label>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            Continue to {{@site.title}}
+                        </button>
+                        
+                        <a href="/?skip_email=true" class="btn btn-secondary">
+                            Skip for now
+                        </a>
+                    </div>
+                </form>
+
+                <p class="welcome-note">
+                    You can always manage your subscription preferences from your account settings.
+                </p>
+            </div>
+        </div>
+
+        <div class="welcome-benefits">
+            <h3>As a member, you can:</h3>
+            <ul>
+                <li>💬 Comment on posts and join discussions</li>
+                <li>📧 Receive our newsletter (if subscribed)</li>
+                <li>🔖 Access member-only content</li>
+                <li>🦋 Share posts directly to Bluesky</li>
+            </ul>
+        </div>
+    </div>
+</main>
+
+<style>
+.oauth-welcome-page {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.welcome-container {
+    max-width: 800px;
+    width: 100%;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 2fr 1fr;
+}
+
+.welcome-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 2.5rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.welcome-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 0.5rem;
+}
+
+.welcome-subtitle {
+    font-size: 1.125rem;
+    color: #00A8E8;
+    font-weight: 500;
+}
+
+.welcome-message {
+    color: #4a5568;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.email-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.form-input {
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-help {
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+    color: #718096;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.form-checkbox {
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 0.25rem;
+    border: 1px solid #cbd5e0;
+    cursor: pointer;
+}
+
+.form-checkbox:checked {
+    accent-color: #667eea;
+}
+
+.form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn {
+    padding: 0.875rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(102, 126, 234, 0.3);
+}
+
+.btn-secondary {
+    background: white;
+    color: #4a5568;
+    border: 1px solid #e2e8f0;
+}
+
+.btn-secondary:hover {
+    background: #f7fafc;
+    border-color: #cbd5e0;
+}
+
+.welcome-note {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+    font-size: 0.875rem;
+    color: #718096;
+}
+
+.welcome-benefits {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+}
+
+.welcome-benefits h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 1rem;
+}
+
+.welcome-benefits ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.welcome-benefits li {
+    color: #4a5568;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .welcome-container {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+    }
+    
+    .welcome-benefits {
+        order: -1;
+    }
+    
+    .welcome-card {
+        padding: 1.5rem;
+    }
+}
+</style>
