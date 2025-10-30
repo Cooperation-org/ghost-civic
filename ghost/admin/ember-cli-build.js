@@ -217,6 +217,11 @@ module.exports = function (defaults) {
                         fs: false
                     }
                 },
+                // Don't bundle these - they'll be provided as AMD modules
+                externals: {
+                    '@tryghost/kg-default-nodes': '@tryghost/kg-default-nodes'
+                    // lexical and react will be bundled into the webpack chunk via ember-auto-import
+                },
                 ...(isDevelopment && {
                     cache: {
                         type: 'filesystem',
@@ -263,12 +268,11 @@ module.exports = function (defaults) {
         app.import('vendor/codemirror/lib/codemirror.js', {type: 'test'});
     }
 
-    // Import kg-default-nodes so it's available for koenig-lexical
-    app.import('node_modules/@tryghost/kg-default-nodes/cjs/kg-default-nodes.js', {
-        using: [
-            {transformation: 'amd', as: '@tryghost/kg-default-nodes'}
-        ]
-    });
+    // AMD shims for civic action card dependencies
+    app.import('vendor/shims/kg-default-nodes.js');
+    // lexical and react are auto-imported and bundled by ember-auto-import
+
+    // kg-default-nodes and lexical are loaded via ember-auto-import (webpack chunks)
 
     if (app.env === 'development' || app.env === 'test') {
         // pull dynamic imports into the assets folder so that they can be lazy-loaded in tests

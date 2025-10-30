@@ -2,6 +2,18 @@
 
 This file provides guidance to AI Agents when working with code in this repository.
 
+## PRIMARY GOAL
+
+**ADD "CIVIC ACTION" CARD TO THE + MENU IN THE KOENIG EDITOR**
+
+This is a Ghost fork with ONE custom feature: the Civic Action card for the Koenig editor.
+
+The civic action card package is `@linked-claims/koenig-civic-action-card` and it's already installed.
+
+The admin build at `ghost/core/core/built/admin/` already includes the civic action card code, but the build has module loading errors (ember-resolver, lexical) preventing the admin from working.
+
+**The ONLY task is to fix the admin build so users can add Civic Action cards via the + menu.**
+
 ## Package Manager
 
 **Always use `yarn` (v1) for all commands.** This repository uses yarn workspaces, not npm.
