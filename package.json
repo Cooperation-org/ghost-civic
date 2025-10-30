@@ -1,6 +1,6 @@
 {
   "name": "ghost-monorepo",
-  "version": "0.0.0-private",
+  "version": "6.5.3",
   "description": "The professional publishing platform",
   "private": true,
   "repository": "https://github.com/TryGhost/Ghost",

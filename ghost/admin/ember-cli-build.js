@@ -263,6 +263,13 @@ module.exports = function (defaults) {
         app.import('vendor/codemirror/lib/codemirror.js', {type: 'test'});
     }
 
+    // Import kg-default-nodes so it's available for koenig-lexical
+    app.import('node_modules/@tryghost/kg-default-nodes/cjs/kg-default-nodes.js', {
+        using: [
+            {transformation: 'amd', as: '@tryghost/kg-default-nodes'}
+        ]
+    });
+
     if (app.env === 'development' || app.env === 'test') {
         // pull dynamic imports into the assets folder so that they can be lazy-loaded in tests
         // also done in development env so http://localhost:4200/tests works

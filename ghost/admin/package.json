@@ -50,6 +50,7 @@
     "@tryghost/kg-clean-basic-html": "4.2.7",
     "@tryghost/kg-converters": "1.1.7",
     "@tryghost/koenig-lexical": "1.7.2",
+    "@tryghost/kg-default-nodes": "2.0.1",
     "@tryghost/limit-service": "1.4.1",
     "@tryghost/members-csv": "2.0.3",
     "@tryghost/nql": "0.12.7",
@@ -174,7 +175,7 @@
     "*.js": "eslint"
   },
   "dependencies": {
-    "@linked-claims/koenig-civic-action-card": "^1.0.1",
+    "@linked-claims/koenig-civic-action-card": "1.0.1",
     "i18n-iso-countries": "7.14.0",
     "lru-cache": "6.0.0",
     "path-browserify": "1.0.1",
