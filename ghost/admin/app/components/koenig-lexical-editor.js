@@ -7,7 +7,6 @@ import {action} from '@ember/object';
 import {didCancel, task} from 'ember-concurrency';
 import {inject} from 'ghost-admin/decorators/inject';
 import {inject as service} from '@ember/service';
-import {CivicActionNodeEditor} from '@linked-claims/koenig-civic-action-card';
 
 export const fileTypes = {
     image: {
@@ -452,8 +451,7 @@ export default class KoenigLexicalEditor extends Component {
             siteTitle: this.settings.title,
             siteDescription: this.settings.description,
             siteUrl: this.config.getSiteUrl('/'),
-            stripeEnabled: checkStripeEnabled(), // returns a boolean
-            civicBridgeUrl: this.config.civic?.bridgeUrl || 'http://127.0.0.1:5000'
+            stripeEnabled: checkStripeEnabled() // returns a boolean
         };
         const cardConfig = Object.assign({}, defaultCardConfig, props.cardConfig, {pinturaConfig: this.pinturaConfig});
 
@@ -650,15 +648,10 @@ export default class KoenigLexicalEditor extends Component {
         };
 
         const KGEditorComponent = ({isInitInstance}) => {
-            // Get DEFAULT_NODES from the editor resource and add our custom node
-            const {DEFAULT_NODES} = this.editorResource.read();
-            const customNodes = [...DEFAULT_NODES, CivicActionNodeEditor];
-
             return (
                 <div data-secondary-instance={isInitInstance ? true : false} style={isInitInstance ? {display: 'none'} : {}}>
                     <KoenigComposer
                         editorResource={this.editorResource}
-                        nodes={customNodes}
                         cardConfig={cardConfig}
                         fileUploader={{useFileUpload, fileTypes}}
                         initialEditorState={this.args.lexical}

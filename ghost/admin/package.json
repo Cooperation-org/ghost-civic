@@ -174,7 +174,6 @@
     "*.js": "eslint"
   },
   "dependencies": {
-    "@linked-claims/koenig-civic-action-card": "^1.0.1",
     "i18n-iso-countries": "7.14.0",
     "lru-cache": "6.0.0",
     "path-browserify": "1.0.1",
